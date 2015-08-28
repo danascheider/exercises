@@ -16,26 +16,21 @@ class Calculator
     end
 
     def add! string
-      return string unless string.match(/\+|\-/)
-      expression = string.match(/\d+(?:\.(?:\d+))? (?:\+|\-) \d+(?:\.(?:\d+))?/)[0]
-      string.gsub!(expression, calculate!(expression))
+      return string unless (expressions = string.match(/\d+(?:\.(?:\d+))? (?:\+|\-) \d+(?:\.(?:\d+))?/))
+      
+      string.gsub!(expressions[0], calculate!(expressions[0].split(' ')))
       add! string
     end
 
     def multiply! string
-      return string unless string.match(/\*|\//)
-      expression = string.match(/\d+(?:\.(?:\d+))? (?:\*|\/) \d+(?:\.(?:\d+))?/)[0]
-      string.gsub!(expression, calculate!(expression))
+      return string unless (expressions = string.match(/\d+(?:\.(?:\d+))? (?:\*|\/) \d+(?:\.(?:\d+))?/))
+
+      string.gsub!(expressions[0], calculate!(expressions[0].split(' ')))
       multiply! string
     end
 
     def calculate! expression
-      array = expression.split(' ')
-      convert_expression! array
-      array[0].send(array[1], array[2]).to_s
-    end
-
-    def substitute! old_string, new_string
-      old_string.gsub!
+      convert_expression! expression
+      expression[0].send(expression[1], expression[2]).to_s
     end
 end
