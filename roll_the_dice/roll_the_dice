@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative 'lib/roll_the_dice'
+
+roller = RollTheDice.new
+
+roller.play
