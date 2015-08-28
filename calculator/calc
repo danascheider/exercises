@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative 'lib/calculator'
+
+calculator = Calculator.new
+puts calculator.evaluate(ARGV.join(' '))
