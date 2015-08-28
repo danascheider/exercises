@@ -1,5 +1,4 @@
 ## Calculator
-=============
 Basic calculator app takes input from the command line and performs elementary operations. Usage:
         calc 1 + 1
         => 2.0
