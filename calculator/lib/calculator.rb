@@ -17,30 +17,25 @@ class Calculator
 
     def add! string
       return string unless string.match(/\+|\-/)
-      expression = [string.match(/\d+(?:\.(?:\d+))? (?:\+|\-) \d+(?:\.(?:\d+))?/)[0]]
-      calculate! expression, string
+      expression = string.match(/\d+(?:\.(?:\d+))? (?:\+|\-) \d+(?:\.(?:\d+))?/)[0]
+      string.gsub!(expression, calculate!(expression))
       add! string
     end
 
     def multiply! string
       return string unless string.match(/\*|\//)
-      expression = [string.match(/\d+(?:\.(?:\d+))? (?:\*|\/) \d+(?:\.(?:\d+))?/)[0]]
-      calculate! expression, string
+      expression = string.match(/\d+(?:\.(?:\d+))? (?:\*|\/) \d+(?:\.(?:\d+))?/)[0]
+      string.gsub!(expression, calculate!(expression))
       multiply! string
     end
 
-    def calculate! expressions, string
-      array = expressions.dup.map! {|arr| arr.split(' ') }
+    def calculate! expression
+      array = expression.split(' ')
+      convert_expression! array
+      array[0].send(array[1], array[2]).to_s
+    end
 
-      array.map! do |arr|
-        convert_expression! arr
-        arr[0].send(arr[1], arr[2]).to_s
-      end
-
-      expressions.each do |match|
-        string.gsub!(match, array[expressions.index(match)])
-      end
-
-      string
+    def substitute! old_string, new_string
+      old_string.gsub!
     end
 end
