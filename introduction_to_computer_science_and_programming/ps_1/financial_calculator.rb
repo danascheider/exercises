@@ -6,12 +6,14 @@ class FinancialCalculator
     @balance, @apr, @min_rate = balance, apr, min_rate
   end
 
-  def compound
-    @balance *= (1 + monthly_interest_rate)
-  end
-
   def make_minimum_payment
     @balance -= min_principal_payment
+    balance
+  end
+
+  def make_payment pmt 
+    principal = pmt - interest_this_month
+    @balance -= principal
     balance
   end
 
