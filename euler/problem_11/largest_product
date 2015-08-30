@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require_relative 'grid'
+require_relative 'lib/grid'
+require_relative 'lib/multiplier'
+
+grid = Grid.new(GRID).map do |arr|
+  arr.map(&:to_i)
+end
+
+multiplier = Multiplier.new(grid, 4)
+puts multiplier.get_largest_product

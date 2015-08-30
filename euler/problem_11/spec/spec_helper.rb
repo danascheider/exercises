@@ -1,4 +1,4 @@
-require_relative '../largest_product'
+require_relative '../lib/multiplier'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
