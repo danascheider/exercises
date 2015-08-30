@@ -1,13 +1,13 @@
 class Printer
-  def initialize n 
+  def initialize n
     @orig = n
   end
 
-  def print_sequence number=@orig
-    return if number < 0
+  def print_sequence beginning=0
+    return if beginning > @orig
 
-    puts number
-    print_sequence number - 1
+    puts beginning
+    print_sequence beginning + 1
   end
 end
 
